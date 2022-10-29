@@ -8,4 +8,8 @@ export class Component {
             Object.assign(this.node, properties);
         }
     }
+
+    destroy() {
+        this.node.remove();
+    }
 }

@@ -1,11 +1,13 @@
 import { Component } from './component';
+import { App } from './components/app';
 import { Counter } from './components/counter';
-import './state';
-import { State } from './state';
+import { AppState } from './state/app-state';
+import './state/counter-state';
 
-const app = document.getElementById('app') as HTMLElement;
+const appElement = document.getElementById('app') as HTMLElement;
 
-const state = new State();
-const counter = new Counter(state);
+const state = new AppState();
+const app = new App(state);
+// const counter = new Counter(state);
 
-app.append(counter.node);
+appElement.append(app.node);

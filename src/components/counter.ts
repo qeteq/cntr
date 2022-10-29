@@ -1,13 +1,16 @@
 import { Component } from '../component';
-import { State } from '../state';
+import { CounterState } from '../state/counter-state';
 import { Button } from './button';
 import { NumberComponent } from './number';
 
 export class Counter extends Component {
-    constructor(state: State) {
+    constructor(
+        state: CounterState,
+        { prefix, onremove }: { prefix: string; onremove: () => void }
+    ) {
         super('div', { className: 'counter' });
 
-        const number = new NumberComponent(state);
+        const number = new NumberComponent(state, { prefix });
 
         const increment = new Button({
             text: '+',
@@ -28,6 +31,17 @@ export class Counter extends Component {
             onclick: () => state.set(0),
         });
 
-        this.node.append(number.node, increment.node, decrement.node, reset.node);
+        const remove = new Button({
+            text: 'remove',
+            onclick: () => onremove(),
+        });
+
+        this.node.append(
+            number.node,
+            increment.node,
+            decrement.node,
+            reset.node,
+            remove.node
+        );
     }
 }

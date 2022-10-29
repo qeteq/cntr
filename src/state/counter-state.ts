@@ -1,6 +1,6 @@
-import { Observable } from './utils/observable';
+import { Observable } from '../utils/observable';
 
-export class State extends Observable<number> {
+export class CounterState extends Observable<number> {
     private count = 0;
 
     constructor(initialValue = 0) {
